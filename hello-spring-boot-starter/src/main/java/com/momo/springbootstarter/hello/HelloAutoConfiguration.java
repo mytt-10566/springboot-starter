@@ -13,9 +13,11 @@ import org.springframework.context.annotation.Configuration;
  * @date: 2018/11/8
  */
 @Configuration
+// 启用对指定带@ConfigurationProperties注解的bean的支持
 @EnableConfigurationProperties(value = HelloProperties.class)
+// classpath路径下存在HelloHandler类则配置
 @ConditionalOnClass(HelloHandler.class)
-// 只有我们的配置文件是否配置了以hello为前缀的资源项值，并且在该资源项值为enable，如果没有配置我们默认设置为true
+// 配置文件hello.enable=true则配置，如果没有该属性则默认设置为true
 @ConditionalOnProperty(prefix = "hello", name = "enable", matchIfMissing = true)
 public class HelloAutoConfiguration {
     

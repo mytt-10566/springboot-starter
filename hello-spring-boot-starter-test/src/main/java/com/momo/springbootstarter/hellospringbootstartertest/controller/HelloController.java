@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloController {
     
-    @Autowired
+    @Autowired(required = false)
     private HelloHandler helloHandler;
     
     @GetMapping("/sayHello")
     public String sayHello() {
-        return helloHandler.sayHello();
+        return helloHandler == null ? "null" : helloHandler.sayHello();
     }
 }
